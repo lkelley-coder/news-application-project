@@ -173,6 +173,19 @@ development database.
 There are no model changes in the site-workflow forms/views, so these additions
 do not require new migrations.
 
+## Build the API reference
+
+Install the documentation dependencies and generate HTML from the project
+root:
+
+```powershell
+python -m pip install -r docs/requirements.txt
+python -m sphinx -b html docs/source docs/generated
+```
+
+The generated, shareable HTML documentation is stored in `docs/generated/`.
+The source files are in `docs/source/`.
+
 ## Deployment checklist
 
 Before any public deployment:

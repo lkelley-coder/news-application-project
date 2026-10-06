@@ -13,6 +13,7 @@ staticfiles/
 local_settings.py
 *.log
 .pytest_cache/
+.doctrees/
 .coverage
 htmlcov/
 build/
