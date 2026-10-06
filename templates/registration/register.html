@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Join News 4 U{% endblock %}
+{% block content %}
+    <section class="auth-card">
+        <p class="eyebrow">Stay informed</p>
+        <h1>Create an account</h1>
+        <p>Choose a role: Readers follow journalists and publications, Journalists submit articles, and Editors review and approve them.</p>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="button" type="submit">Create account</button>
+        </form>
+    </section>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}{{ page_title }} | News 4 U{% endblock %}
+{% block content %}
+    <section class="page-heading">
+        <p class="eyebrow">News 4 U workspace</p>
+        <h1>{{ page_title }}</h1>
+        {% if submit_label == "Submit for review" %}
+            <p>Your story will be visible to readers after an editor approves it.</p>
+        {% endif %}
+    </section>
+    <form class="editor-form story-card" method="post">
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+            <div class="form-errors" role="alert">{{ form.non_field_errors }}</div>
+        {% endif %}
+        {% for field in form %}
+            <div class="form-field">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.help_text %}<small>{{ field.help_text }}</small>{% endif %}
+                {% if field.errors %}<div class="form-errors" role="alert">{{ field.errors }}</div>{% endif %}
+            </div>
+        {% endfor %}
+        <div class="form-actions">
+            <button class="button" type="submit">{{ submit_label }}</button>
+            {% if cancel_url %}
+                <a class="button button-secondary" href="{% url cancel_url %}">
+                    Cancel
+                </a>
+            {% endif %}
+        </div>
+    </form>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}{{ article.title }} | News 4 U{% endblock %}
+{% block content %}
+    <article class="article-detail">
+        <p class="eyebrow">
+            {% if article.publisher %}{{ article.publisher.name }}{% else %}Independent reporting{% endif %}
+        </p>
+        <h1>{{ article.title }}</h1>
+        <p class="byline">
+            {% if article.author %}By {{ article.author.get_full_name|default:article.author.username }}{% endif %}
+            <time datetime="{{ article.created_at|date:'c' }}">{{ article.created_at|date:"M j, Y" }}</time>
+        </p>
+        {% if not article.approved %}
+            <p class="status-pill status-pending">Awaiting editor approval — not visible to readers</p>
+        {% endif %}
+        <div class="article-body">{{ article.content|linebreaks }}</div>
+        {% if can_manage %}
+            <a class="button button-secondary" href="{% url 'article-edit' article.pk %}">Edit article</a>
+        {% endif %}
+    </article>
+{% endblock %}

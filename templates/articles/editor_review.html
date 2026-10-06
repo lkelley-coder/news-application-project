@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Editor review | News 4 U{% endblock %}
+{% block content %}
+    <section class="page-heading editor-review">
+        <p class="eyebrow">Editorial desk</p>
+        <h1>Submissions awaiting review</h1>
+        <p>Review each submission before it reaches readers and subscribers.</p>
+    </section>
+    {% for article in articles %}
+        <article class="story-card">
+            <h2>{{ article.title }}</h2>
+            <p class="byline">
+                Submitted by {{ article.author|default:"Publisher" }}
+                {% if article.publisher %}for {{ article.publisher.name }}{% endif %}
+            </p>
+            <p>{{ article.content|truncatewords:80 }}</p>
+            <div class="story-actions">
+                <a class="button button-secondary" href="{% url 'article-edit' article.pk %}">
+                    Edit submission
+                </a>
+                <form
+                    action="{% url 'article-delete' article.pk %}"
+                    method="post"
+                    onsubmit="return confirm('Delete this article permanently?');"
+                >
+                    {% csrf_token %}
+                    <button class="button button-danger" type="submit">
+                        Delete
+                    </button>
+                </form>
+            </div>
+            <form action="{% url 'approve-article-page' article.pk %}" method="post">
+                {% csrf_token %}
+                <button class="button" type="submit">Approve and publish</button>
+            </form>
+        </article>
+    {% empty %}
+        <p class="empty-state editor-review-empty">
+            The editorial queue is clear.
+        </p>
+    {% endfor %}
+{% endblock %}

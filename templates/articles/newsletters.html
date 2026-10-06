@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Newsletters | News 4 U{% endblock %}
+{% block content %}
+    <section class="page-heading">
+        <p class="eyebrow">Curated by journalists</p>
+        <h1>Newsletters</h1>
+        <p>Collections of reporting selected by the journalists who know it best.</p>
+    </section>
+    <section class="card-grid">
+        {% for newsletter in newsletters %}
+            <article class="story-card">
+                <p class="eyebrow">{{ newsletter.created_at|date:"M j, Y" }}</p>
+                <h2><a href="{% url 'newsletter-detail' newsletter.pk %}">{{ newsletter.title }}</a></h2>
+                <p class="byline">Curated by {{ newsletter.author.get_full_name|default:newsletter.author.username }}</p>
+                <p>{{ newsletter.description|default:"A hand-picked collection of published stories." }}</p>
+                <h3>Included stories</h3>
+                <ul>
+                    {% for article in newsletter.articles.all %}
+                        {% if article.approved %}
+                            <li>{{ article.title }}</li>
+                        {% endif %}
+                    {% empty %}
+                        <li>No published stories yet.</li>
+                    {% endfor %}
+                </ul>
+            </article>
+        {% empty %}
+            <p class="empty-state">No newsletters are available yet.</p>
+        {% endfor %}
+    </section>
+{% endblock %}

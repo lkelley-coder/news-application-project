@@ -1,0 +1,18 @@
+{% extends "rest_framework/base.html" %}
+
+{% block style %}
+    {{ block.super }}
+    <style>
+        .region[aria-label="request form"],
+        .request-info,
+        .response-info,
+        #post-generic-content-form,
+        #put-generic-content-form {
+            display: none !important;
+        }
+
+        .form-switcher li:has(a[name="raw-tab"]) {
+            display: none;
+        }
+    </style>
+{% endblock %}

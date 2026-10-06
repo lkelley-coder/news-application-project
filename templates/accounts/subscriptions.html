@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}My subscriptions | News 4 U{% endblock %}
+{% block content %}
+    <section class="page-heading">
+        <p class="eyebrow">Reader preferences</p>
+        <h1>Manage your subscriptions</h1>
+        <p>Choose the publications and journalists whose new stories you want to receive.</p>
+    </section>
+    <form class="subscription-form" method="post">
+        {% csrf_token %}
+        <section class="story-card">
+            <h2>Publications</h2>
+            {{ form.publishers.errors }}
+            {{ form.publishers }}
+        </section>
+        <section class="story-card">
+            <h2>Journalists</h2>
+            {{ form.journalists.errors }}
+            {{ form.journalists }}
+        </section>
+        <button class="button" type="submit">Save subscriptions</button>
+    </form>
+{% endblock %}

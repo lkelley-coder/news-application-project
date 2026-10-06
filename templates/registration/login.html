@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Sign in | News 4 U{% endblock %}
+{% block content %}
+    <section class="auth-card">
+        <p class="eyebrow">Welcome back</p>
+        <h1>Sign in</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            {% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}
+            <button class="button" type="submit">Sign in</button>
+        </form>
+        <p>New here? <a href="{% url 'register' %}">Create a reader account</a>.</p>
+    </section>
+{% endblock %}

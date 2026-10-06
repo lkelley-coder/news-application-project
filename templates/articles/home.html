@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Latest reporting | News 4 U{% endblock %}
+{% block content %}
+    <section class="hero">
+        <p class="eyebrow">Independent voices. Curated reporting.</p>
+        <h1>Stories that move the conversation forward.</h1>
+        <p>Reporting from independent journalists and trusted publications.</p>
+    </section>
+    <section aria-labelledby="latest-heading">
+        <div class="section-heading">
+            <h2 id="latest-heading">Latest articles</h2>
+            <span>{{ articles|length }} published</span>
+        </div>
+        {% for article in articles %}
+            <article class="story-card">
+                {% if article.publisher %}
+                    <p class="eyebrow">{{ article.publisher.name }}</p>
+                {% else %}
+                    <p class="eyebrow">Independent journalist</p>
+                {% endif %}
+                <h3><a href="{% url 'article-detail' article.pk %}">{{ article.title }}</a></h3>
+                <p class="byline">
+                    {% if article.author %}By {{ article.author.get_full_name|default:article.author.username }}{% endif %}
+                    <time datetime="{{ article.created_at|date:'c' }}">{{ article.created_at|date:"M j, Y" }}</time>
+                </p>
+                <p>{{ article.content|truncatewords:42 }}</p>
+            </article>
+        {% empty %}
+            <p class="empty-state">No articles have been published yet. Check back soon.</p>
+        {% endfor %}
+    </section>
+{% endblock %}

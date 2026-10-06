@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}{{ page_title }} | News 4 U{% endblock %}
+{% block content %}
+    <section class="page-heading workspace-heading">
+        <p class="eyebrow">News 4 U workspace</p>
+        <h1>{{ page_title }}</h1>
+        {% if kind == "article" and workspace_role == "journalist" %}
+            <p>Track submitted stories and continue editing your work.</p>
+            <a class="button" href="{% url 'article-create' %}">Write an article</a>
+        {% elif kind == "article" %}
+            <p>Review, edit, and remove article submissions.</p>
+        {% elif workspace_role == "journalist" %}
+            <p>Create and manage newsletters curated from approved stories.</p>
+            <a class="button" href="{% url 'newsletter-create' %}">Create newsletter</a>
+        {% else %}
+            <p>Manage newsletters created by journalists and editors.</p>
+            <a class="button" href="{% url 'newsletter-create' %}">Create newsletter</a>
+        {% endif %}
+    </section>
+    {% if kind == "article" %}
+        {% for article in articles %}
+            <article class="story-card">
+                <div class="section-heading">
+                    <h2><a href="{% url 'article-detail' article.pk %}">{{ article.title }}</a></h2>
+                    <span class="status-pill {% if article.approved %}status-published{% else %}status-pending{% endif %}">
+                        {% if article.approved %}Published{% else %}Awaiting review{% endif %}
+                    </span>
+                </div>
+                <p class="byline">
+                    {% if article.publisher %}{{ article.publisher.name }}{% else %}Independent{% endif %}
+                    <time datetime="{{ article.created_at|date:'c' }}">{{ article.created_at|date:"M j, Y" }}</time>
+                </p>
+                <p>{{ article.content|truncatewords:34 }}</p>
+                <div class="story-actions">
+                    <a class="button button-secondary" href="{% url 'article-edit' article.pk %}">Edit</a>
+                    <form action="{% url 'article-delete' article.pk %}" method="post" onsubmit="return confirm('Delete this article permanently?');">
+                        {% csrf_token %}
+                        <button class="button button-danger" type="submit">Delete</button>
+                    </form>
+                </div>
+            </article>
+        {% empty %}
+            <p class="empty-state">No articles here yet.</p>
+        {% endfor %}
+    {% else %}
+        {% for newsletter in newsletters %}
+            <article class="story-card">
+                <div class="section-heading">
+                    <h2><a href="{% url 'newsletter-detail' newsletter.pk %}">{{ newsletter.title }}</a></h2>
+                    <span>{{ newsletter.articles.count }} stories</span>
+                </div>
+                <p class="byline">Curated by {{ newsletter.author.get_full_name|default:newsletter.author.username }}</p>
+                <p>{{ newsletter.description|default:"A hand-picked collection of stories."|truncatewords:34 }}</p>
+                <div class="story-actions">
+                    <a class="button button-secondary" href="{% url 'newsletter-edit' newsletter.pk %}">Edit</a>
+                    <form action="{% url 'newsletter-delete' newsletter.pk %}" method="post" onsubmit="return confirm('Delete this newsletter permanently?');">
+                        {% csrf_token %}
+                        <button class="button button-danger" type="submit">Delete</button>
+                    </form>
+                </div>
+            </article>
+        {% empty %}
+            <p class="empty-state">No newsletters here yet.</p>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

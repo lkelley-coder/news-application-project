@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}{{ newsletter.title }} | News 4 U{% endblock %}
+{% block content %}
+    <section class="page-heading">
+        <p class="eyebrow">Journalist-curated newsletter</p>
+        <h1>{{ newsletter.title }}</h1>
+        <p>{{ newsletter.description }}</p>
+        <p class="byline">Curated by {{ newsletter.author.get_full_name|default:newsletter.author.username }}</p>
+        {% if can_manage %}
+            <a class="button button-secondary" href="{% url 'newsletter-edit' newsletter.pk %}">Edit newsletter</a>
+        {% endif %}
+    </section>
+    <section aria-label="Newsletter stories">
+        {% for article in newsletter.articles.all %}
+            {% if article.approved %}
+                <article class="story-card">
+                    <p class="eyebrow">{% if article.publisher %}{{ article.publisher.name }}{% else %}Independent reporting{% endif %}</p>
+                    <h2><a href="{% url 'article-detail' article.pk %}">{{ article.title }}</a></h2>
+                    <p>{{ article.content|truncatewords:40 }}</p>
+                </article>
+            {% endif %}
+        {% empty %}
+            <p class="empty-state">This newsletter has no stories yet.</p>
+        {% endfor %}
+    </section>
+{% endblock %}
