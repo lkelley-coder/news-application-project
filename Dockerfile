@@ -3,6 +3,7 @@ FROM python:3.13-slim
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     DB_ENGINE=sqlite \
+    SQLITE_NAME=/data/db.sqlite3 \
     DJANGO_DEBUG=true \
     DJANGO_ALLOWED_HOSTS=localhost,127.0.0.1
 
