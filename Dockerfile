@@ -16,6 +16,8 @@ RUN apt-get update \
         pkg-config \
     && rm -rf /var/lib/apt/lists/*
 
+RUN mkdir -p /data
+
 COPY requirements.txt .
 RUN python -m pip install --no-cache-dir -r requirements.txt
 
