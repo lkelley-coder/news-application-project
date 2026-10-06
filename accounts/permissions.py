@@ -5,7 +5,7 @@ from .models import User
 
 
 def user_has_role(user, role):
-    """Check whether role, group, or superuser access grants this role."""
+    """Check a user's role, matching group membership, or superuser status."""
     group_name = {
         User.READER: "Reader",
         User.EDITOR: "Editor",
@@ -31,10 +31,10 @@ class IsJournalist(BasePermission):
 
 
 class IsEditorOrJournalist(BasePermission):
-    """Allow access to editors and journalists."""
+    """Allow access to editors and journalists, including superusers."""
 
     def has_permission(self, request, view):
-        """Check whether the request user may access this view."""
+        """Check whether the request user may edit or submit content."""
         return (
             user_has_role(request.user, User.EDITOR)
             or user_has_role(request.user, User.JOURNALIST)
@@ -58,7 +58,7 @@ class IsReader(BasePermission):
 
 
 class IsInternalAPIRequest(BasePermission):
-    """Allow access only to callers presenting the internal API key."""
+    """Restrict endpoint access to callers with the internal API key."""
 
     def has_permission(self, request, view):
         """Check whether the request includes the internal API key."""

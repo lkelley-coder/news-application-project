@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Application reference &#8212; News 4 U 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="News 4 U documentation" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="application-reference">
+<h1>Application reference<a class="headerlink" href="#application-reference" title="Link to this heading">¶</a></h1>
+<section id="module-accounts.permissions">
+<span id="roles-and-permissions"></span><h2>Roles and permissions<a class="headerlink" href="#module-accounts.permissions" title="Link to this heading">¶</a></h2>
+<p>REST framework permission helpers for role-based access.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="accounts.permissions.IsEditor">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">accounts.permissions.</span></span><span class="sig-name descname"><span class="pre">IsEditor</span></span><a class="reference internal" href="_modules/accounts/permissions.html#IsEditor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.permissions.IsEditor" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BasePermission</span></code></p>
+<p>Allow access only to editors.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.permissions.IsEditor.has_permission">
+<span class="sig-name descname"><span class="pre">has_permission</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">view</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/permissions.html#IsEditor.has_permission"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.permissions.IsEditor.has_permission" title="Link to this definition">¶</a></dt>
+<dd><p>Return whether the request user may access this editor-only view.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="accounts.permissions.IsEditorOrJournalist">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">accounts.permissions.</span></span><span class="sig-name descname"><span class="pre">IsEditorOrJournalist</span></span><a class="reference internal" href="_modules/accounts/permissions.html#IsEditorOrJournalist"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.permissions.IsEditorOrJournalist" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BasePermission</span></code></p>
+<p>Allow access to editors and journalists, including superusers.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.permissions.IsEditorOrJournalist.has_permission">
+<span class="sig-name descname"><span class="pre">has_permission</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">view</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/permissions.html#IsEditorOrJournalist.has_permission"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.permissions.IsEditorOrJournalist.has_permission" title="Link to this definition">¶</a></dt>
+<dd><p>Check whether the request user may edit or submit content.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="accounts.permissions.IsInternalAPIRequest">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">accounts.permissions.</span></span><span class="sig-name descname"><span class="pre">IsInternalAPIRequest</span></span><a class="reference internal" href="_modules/accounts/permissions.html#IsInternalAPIRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.permissions.IsInternalAPIRequest" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BasePermission</span></code></p>
+<p>Restrict endpoint access to callers with the internal API key.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.permissions.IsInternalAPIRequest.has_permission">
+<span class="sig-name descname"><span class="pre">has_permission</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">view</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/permissions.html#IsInternalAPIRequest.has_permission"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.permissions.IsInternalAPIRequest.has_permission" title="Link to this definition">¶</a></dt>
+<dd><p>Check whether the request includes the internal API key.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="accounts.permissions.IsJournalist">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">accounts.permissions.</span></span><span class="sig-name descname"><span class="pre">IsJournalist</span></span><a class="reference internal" href="_modules/accounts/permissions.html#IsJournalist"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.permissions.IsJournalist" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BasePermission</span></code></p>
+<p>Allow access only to journalists.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.permissions.IsJournalist.has_permission">
+<span class="sig-name descname"><span class="pre">has_permission</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">view</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/permissions.html#IsJournalist.has_permission"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.permissions.IsJournalist.has_permission" title="Link to this definition">¶</a></dt>
+<dd><p>Check whether the request user may access this view.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="accounts.permissions.IsReader">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">accounts.permissions.</span></span><span class="sig-name descname"><span class="pre">IsReader</span></span><a class="reference internal" href="_modules/accounts/permissions.html#IsReader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.permissions.IsReader" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BasePermission</span></code></p>
+<p>Allow access only to readers.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.permissions.IsReader.has_permission">
+<span class="sig-name descname"><span class="pre">has_permission</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">view</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/permissions.html#IsReader.has_permission"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.permissions.IsReader.has_permission" title="Link to this definition">¶</a></dt>
+<dd><p>Return whether the request user may access this reader-only view.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="accounts.permissions.user_has_role">
+<span class="sig-prename descclassname"><span class="pre">accounts.permissions.</span></span><span class="sig-name descname"><span class="pre">user_has_role</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">role</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/accounts/permissions.html#user_has_role"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.permissions.user_has_role" title="Link to this definition">¶</a></dt>
+<dd><p>Check a user’s role, matching group membership, or superuser status.</p>
+</dd></dl>
+
+</section>
+<section id="module-articles.services">
+<span id="approval-services"></span><h2>Approval services<a class="headerlink" href="#module-articles.services" title="Link to this heading">¶</a></h2>
+<p>Service helpers for article approval side effects.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="articles.services.approve_article">
+<span class="sig-prename descclassname"><span class="pre">articles.services.</span></span><span class="sig-name descname"><span class="pre">approve_article</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">article</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">editor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/articles/services.html#approve_article"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.services.approve_article" title="Link to this definition">¶</a></dt>
+<dd><p>Save approval, log it internally, and notify subscribers.</p>
+<p>The approval is persisted before either integration runs. Integration
+errors propagate to the caller without reverting the approval.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="articles.services.article_subscribers">
+<span class="sig-prename descclassname"><span class="pre">articles.services.</span></span><span class="sig-name descname"><span class="pre">article_subscribers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">article</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/articles/services.html#article_subscribers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.services.article_subscribers" title="Link to this definition">¶</a></dt>
+<dd><p>Return active readers subscribed to the author or publisher.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="articles.services.log_approved_article">
+<span class="sig-prename descclassname"><span class="pre">articles.services.</span></span><span class="sig-name descname"><span class="pre">log_approved_article</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">article</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/articles/services.html#log_approved_article"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.services.log_approved_article" title="Link to this definition">¶</a></dt>
+<dd><p>Post approval metadata to the configured internal API endpoint.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="articles.services.notify_subscribers">
+<span class="sig-prename descclassname"><span class="pre">articles.services.</span></span><span class="sig-name descname"><span class="pre">notify_subscribers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">article</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/articles/services.html#notify_subscribers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.services.notify_subscribers" title="Link to this definition">¶</a></dt>
+<dd><p>Email subscribers and return the number of delivered messages.</p>
+</dd></dl>
+
+</section>
+<section id="module-articles.models">
+<span id="data-models"></span><h2>Data models<a class="headerlink" href="#module-articles.models" title="Link to this heading">¶</a></h2>
+<p>Database models for articles, newsletters, and approval logs.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="articles.models.ApprovedArticleLog">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">articles.models.</span></span><span class="sig-name descname"><span class="pre">ApprovedArticleLog</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/articles/models.html#ApprovedArticleLog"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.models.ApprovedArticleLog" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<p>An audit record for an approved article.</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="articles.models.ApprovedArticleLog.DoesNotExist">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#articles.models.ApprovedArticleLog.DoesNotExist" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="articles.models.ApprovedArticleLog.MultipleObjectsReturned">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#articles.models.ApprovedArticleLog.MultipleObjectsReturned" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="articles.models.Article">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">articles.models.</span></span><span class="sig-name descname"><span class="pre">Article</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/articles/models.html#Article"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.models.Article" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<p>A journalist’s news article, optionally tied to a publisher.</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="articles.models.Article.DoesNotExist">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#articles.models.Article.DoesNotExist" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="articles.models.Article.MultipleObjectsReturned">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#articles.models.Article.MultipleObjectsReturned" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="articles.models.Article.clean">
+<span class="sig-name descname"><span class="pre">clean</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/articles/models.html#Article.clean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.models.Article.clean" title="Link to this definition">¶</a></dt>
+<dd><p>Validate that an assigned article author is a journalist.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="articles.models.Newsletter">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">articles.models.</span></span><span class="sig-name descname"><span class="pre">Newsletter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/articles/models.html#Newsletter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.models.Newsletter" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<p>A curated newsletter containing approved articles.</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="articles.models.Newsletter.DoesNotExist">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#articles.models.Newsletter.DoesNotExist" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="articles.models.Newsletter.MultipleObjectsReturned">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#articles.models.Newsletter.MultipleObjectsReturned" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="articles.models.Newsletter.clean">
+<span class="sig-name descname"><span class="pre">clean</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/articles/models.html#Newsletter.clean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.models.Newsletter.clean" title="Link to this definition">¶</a></dt>
+<dd><p>Validate that an assigned newsletter author is a journalist.</p>
+</dd></dl>
+
+</dd></dl>
+
+<p id="module-publications.models">Database models for publishers and affiliations.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="publications.models.Publisher">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">publications.models.</span></span><span class="sig-name descname"><span class="pre">Publisher</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/publications/models.html#Publisher"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#publications.models.Publisher" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<p>Group affiliated editors, journalists, and articles.</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="publications.models.Publisher.DoesNotExist">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#publications.models.Publisher.DoesNotExist" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="publications.models.Publisher.MultipleObjectsReturned">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#publications.models.Publisher.MultipleObjectsReturned" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="publications.models.Publisher.clean">
+<span class="sig-name descname"><span class="pre">clean</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/publications/models.html#Publisher.clean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#publications.models.Publisher.clean" title="Link to this definition">¶</a></dt>
+<dd><p>Validate roles for affiliated editors and journalists.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-publications.views">
+<span id="publisher-workflows"></span><h2>Publisher workflows<a class="headerlink" href="#module-publications.views" title="Link to this heading">¶</a></h2>
+<p>Website views for creating and managing publishers.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="publications.views.can_manage_publisher">
+<span class="sig-prename descclassname"><span class="pre">publications.views.</span></span><span class="sig-name descname"><span class="pre">can_manage_publisher</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">publisher</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/publications/views.html#can_manage_publisher"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#publications.views.can_manage_publisher" title="Link to this definition">¶</a></dt>
+<dd><p>Return True if the user is an editor affiliated with the publisher.</p>
+<p>Superusers may manage every publisher.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="publications.views.publisher_create_page">
+<span class="sig-prename descclassname"><span class="pre">publications.views.</span></span><span class="sig-name descname"><span class="pre">publisher_create_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/publications/views.html#publisher_create_page"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#publications.views.publisher_create_page" title="Link to this definition">¶</a></dt>
+<dd><p>Let an editor create a publisher and join as an editor.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="publications.views.publisher_delete_page">
+<span class="sig-prename descclassname"><span class="pre">publications.views.</span></span><span class="sig-name descname"><span class="pre">publisher_delete_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pk</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/publications/views.html#publisher_delete_page"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#publications.views.publisher_delete_page" title="Link to this definition">¶</a></dt>
+<dd><p>Delete a publisher unless articles still reference it.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="publications.views.publisher_edit_page">
+<span class="sig-prename descclassname"><span class="pre">publications.views.</span></span><span class="sig-name descname"><span class="pre">publisher_edit_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pk</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/publications/views.html#publisher_edit_page"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#publications.views.publisher_edit_page" title="Link to this definition">¶</a></dt>
+<dd><p>Edit a publisher and its affiliated editors and journalists.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="publications.views.publisher_list">
+<span class="sig-prename descclassname"><span class="pre">publications.views.</span></span><span class="sig-name descname"><span class="pre">publisher_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/publications/views.html#publisher_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#publications.views.publisher_list" title="Link to this definition">¶</a></dt>
+<dd><p>List publishers; editors also see the management actions.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">News 4 U</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Application reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-accounts.permissions">Roles and permissions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-articles.services">Approval services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-articles.models">Data models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-publications.views">Publisher workflows</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">News 4 U documentation</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, News 4 U contributors.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/reference.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

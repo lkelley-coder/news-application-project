@@ -9,7 +9,7 @@ from accounts.models import User
 
 
 def article_subscribers(article):
-    """Return subscribed readers who should receive article notifications."""
+    """Return active readers subscribed to the author or publisher."""
     # Readers may subscribe to a publisher, a journalist, or both.
     subscription_filter = Q()
     if article.publisher_id:
@@ -30,7 +30,7 @@ def article_subscribers(article):
 
 
 def notify_subscribers(article):
-    """Email subscribed readers about an approved article."""
+    """Email subscribers and return the number of delivered messages."""
     recipients = list(
         article_subscribers(article).values_list("email", flat=True)
     )
@@ -51,7 +51,7 @@ def notify_subscribers(article):
 
 
 def log_approved_article(article):
-    """Send approved article details to the internal logging endpoint."""
+    """Post approval metadata to the configured internal API endpoint."""
     payload = {
         "article_id": article.pk,
         "title": article.title,
@@ -70,7 +70,11 @@ def log_approved_article(article):
 
 
 def approve_article(article, editor):
-    """Mark an article approved, log it internally, and notify subscribers."""
+    """Save approval, log it internally, and notify subscribers.
+
+    The approval is persisted before either integration runs. Integration
+    errors propagate to the caller without reverting the approval.
+    """
     article.approved = True
     article.approved_by = editor
     article.approved_at = timezone.now()
